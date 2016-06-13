@@ -401,6 +401,7 @@ template <class C, typename Result, class... Ts>
 struct callable_trait<Result (C::*)(Ts...) const> {
   using result_type = Result;
   using arg_types = type_list<Ts...>;
+  using fun_sig = Result (Ts...);
   using fun_type = std::function<Result(Ts...)>;
 };
 
@@ -409,6 +410,7 @@ template <class C, typename Result, class... Ts>
 struct callable_trait<Result (C::*)(Ts...)> {
   using result_type = Result;
   using arg_types = type_list<Ts...>;
+  using fun_sig = Result (Ts...);
   using fun_type = std::function<Result(Ts...)>;
 };
 
@@ -417,6 +419,7 @@ template <class Result, class... Ts>
 struct callable_trait<Result(Ts...)> {
   using result_type = Result;
   using arg_types = type_list<Ts...>;
+  using fun_sig = Result (Ts...);
   using fun_type = std::function<Result(Ts...)>;
 };
 
@@ -425,11 +428,12 @@ template <class Result, class... Ts>
 struct callable_trait<Result (*)(Ts...)> {
   using result_type = Result;
   using arg_types = type_list<Ts...>;
+  using fun_sig = Result (Ts...);
   using fun_type = std::function<Result(Ts...)>;
 };
 
 // matches (IsFun || IsMemberFun)
-template <bool IsFun, bool IsMemberFun, typename T>
+template <bool IsFun, bool IsMemberFun, class T>
 struct get_callable_trait_helper {
   using type = callable_trait<T>;
 };
@@ -459,6 +463,7 @@ struct get_callable_trait {
   using result_type = typename type::result_type;
   using arg_types = typename type::arg_types;
   using fun_type = typename type::fun_type;
+  using fun_sig = typename type::fun_sig;
   static constexpr size_t num_args = tl_size<arg_types>::value;
 };
 
