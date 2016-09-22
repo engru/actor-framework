@@ -80,7 +80,10 @@ public:
     const char* operator()(const std::string&) const;
     const char* operator()(double) const;
     const char* operator()(int64_t) const;
-    const char* operator()(size_t) const;
+    const char* operator()(uint64_t) const;
+    const char* operator()(int32_t) const;
+    const char* operator()(uint32_t) const;
+    const char* operator()(int16_t) const;
     const char* operator()(uint16_t) const;
     const char* operator()(bool) const;
     const char* operator()(atom_value) const;

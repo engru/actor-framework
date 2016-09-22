@@ -62,10 +62,19 @@ const char* config_option::type_name_visitor::operator()(double) const {
   return "a double";
 }
 const char* config_option::type_name_visitor::operator()(int64_t) const {
+  return "a long integer";
+}
+const char* config_option::type_name_visitor::operator()(uint64_t) const {
+  return "an unsigned long integer";
+}
+const char* config_option::type_name_visitor::operator()(int32_t) const {
   return "an integer";
 }
-const char* config_option::type_name_visitor::operator()(size_t) const {
+const char* config_option::type_name_visitor::operator()(uint32_t) const {
   return "an unsigned integer";
+}
+const char* config_option::type_name_visitor::operator()(int16_t) const {
+  return "a short integer";
 }
 const char* config_option::type_name_visitor::operator()(uint16_t) const {
   return "an unsigned short integer";
